@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order Form</title>
+    </head>
+    
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        #display{
+            width: 100%;
+            height: auto;
+        }
+        
+        #top {
+            background-color: #AA2233;
+            height: 10vh;
+            margin: 0;
+        }
+        
+        #middle {
+            background-color: #DDD;
+            height: 50vh;
+            margin: 45px 0;
+        }
+        
+        #bottom {
+            background-color: #AA2233;
+            height: 10vh
+        }
+        
+        #txt {
+            position: absolute;
+            top: 0;
+            left: 40%;
+            height: auto;
+            width: 20%;
+            color: white;
+        }
+        
+        #inpHolder {
+            position: absolute;
+            left: 50%;
+            top: 18%;
+            width: 17%;
+            height: auto;
+        }
+        
+        .inp {
+            margin: 10px 0;
+        }
+        
+        .txt {
+            margin: 19px 0;
+        }
+        
+        #txtHolder {
+            position: absolute;
+            left: 25%;
+            top: 16.3%;
+            width: 20%;
+            height: auto;
+        }
+        
+        #order {
+            position: relative;
+            top: 84%;
+            left: 46.5%;
+            width: 8%;
+            height: 10%;
+            color: white;
+            background-color: #2233FF;
+            border: 1px solid #2233FF;
+            display: none;
+        }
+        
+        #order:hover {
+            background-color: #1122CC;
+            border: 1px solid #1122CC;
+        }
+        
+        #orderHolder {
+            position: absolute;
+            left: 25%;
+            top: 16.3%;
+            width: 20%;
+            height: auto;
+        }
+        
+        #total {
+            position: relative;
+            top: 10vh;
+            display: none;
+        }
+        
+        #purchase {
+            position: relative;
+            display: none;
+            top: 15vh;
+            left: 20vw;
+            width: 50%;
+            height: 5vh;
+            color: white;
+            background-color: #2233FF;
+            border: 1px solid #2233FF;
+        }
+        
+        #purchase:hover {
+            background-color: #1122CC;
+            border: 1px solid #1122CC;
+        }
+        
+        #AA {
+            position: absolute;
+            left: 55%;
+            top: 16.3%;
+            width: 20%;
+            height: auto;
+        }
+        
+        #total1 {
+            position: relative;
+            top: 10vh;
+            display: none;
+        }
+        
+        #qty1 {
+            display: none;
+        }
+        
+        #price1 {
+            display: none;
+        }
+        
+        #back {
+            background-image: url(Button-Back.png);
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 10%;
+        }
+        
+        #price {
+            display: none;
+        }
+        
+        #qty {
+            display: none;
+        }
+        
+        #message {
+            position: relative;
+            left: 30%;
+            top: 20%;
+            width: 40%;
+            font-size: 10vh;
+            color: #2233FF;
+        }
+    </style>
+    
+    <body>
+        <div id="display">
+            <div id='top'>
+                <h2 id="txt" align='Center'>Order Form</h2>
+                <div id='back'></div>
+            </div>
+            <div id='middle'>
+                <div id="message" align='center'></div>
+                <div id='txtHolder'>
+                    <h3 id='a' class="txt" align='right'>First Name:</h3>
+                    <h3 id='b' class="txt" align='right'>Last Name:</h3>
+                    <h3 id='c' class="txt" align='right'>Address:</h3>
+                    <h3 id='d' class="txt" align='right'>City:</h3>
+                    <h3 id='e' class="txt" align='right'>Province:</h3>
+                    <h3 id='f' class="txt" align='right'>Email:</h3>
+                </div>
+                <div id='inpHolder'>
+                    <input id='fName' class="inp" type='text' placeholder='First name'/>
+                    <input id='lName' class="inp" type='text' placeholder='Lastname'/>
+                    <input id='address' class="inp" type='text' placeholder='Address'/>
+                    <input id='city' class="inp" type='text' placeholder='City'/>
+                    <input id='province' class="inp" type='text' placeholder="Province"/>
+                    <input id='email' class="inp" type="text" placeholder="Email"/>
+                </div>
+                <button id='order'>Order</button>
+                <div id='orderHolder'>
+                    <h3 id='price' class="txt" align='right'>Price:</h3>
+                    <h3 id='qty' class="txt" align='right'>Quantity:</h3>
+                    <h3 id='total' class="txt" align='right'>Total:</h3>
+                    <button class="txt" id='purchase'>Purchase</button>
+                </div>
+                <div id='AA'>
+                    <h3 id='price1' class="txt" align='left'>$0</h3>
+                    <h3 id='qty1' class="txt" align='left'>0</h3>
+                    <h3 id='total1' class="txt" align='left'>$0</h3>
+                </div>
+            </div>
+            <div id='bottom'></div>
+        </div>
+        
+        <script>
+            var a = document.getElementById('a');
+            var b = document.getElementById('b');
+            var c = document.getElementById('c');
+            var d = document.getElementById('d');
+            var e = document.getElementById('e');
+            var f = document.getElementById('f');
+            
+            var first = document.getElementById('fName');
+            var last = document.getElementById('lName');
+            var address = document.getElementById('address');
+            var city = document.getElementById('city');
+            var province = document.getElementById('province');
+            var email = document.getElementById('email');
+            
+            var but = document.getElementById('order');
+            
+            var regEx1 = /^[a-zA-z ]{2,15}$/;
+            var regEx2 = /^[a-zA-z ]{2,15}$/;
+            var regEx3 = /^[0-9]{1,5}?(-)?[0-9]{1,7}( )[a-zA-z ]{1,50}$/;
+            var regEx4 = /^[a-zA-z ]{1,20}$/;
+            var regEx5 = /^[a-zA-z ]{2}$/;
+            var regEx6 = /^[a-zA-Z0-9\-_\.]{3,20}@[a-zA-Z0-9\-]{3,20}\.(com|ca|info|org)$/;
+            
+            var qty = document.getElementById('qty');
+            var total = document.getElementById('total');
+            var price = document.getElementById('price');
+            var qty1 = document.getElementById('qty1');
+            var price1 = document.getElementById('price1');
+            var total1 = document.getElementById('total1');
+            var purchase = document.getElementById("purchase");
+            
+            var message = document.getElementById('message');
+            
+            var ba = parseInt(sessionStorage.getItem('ba'));
+            var ca = parseInt(sessionStorage.getItem('ca'));
+            
+            document.getElementById("back").onclick = function() {
+                location.href = 'index.html';
+            }
+            
+            onkeyup = function() {
+                if((regEx1.test(first.value) == true) && (regEx2.test(last.value) == true) && (regEx3.test(address.value) == true) && (regEx4.test(city.value) == true) && (regEx5.test(province.value) == true) && (regEx6.test(email.value) == true)){
+                    console.log('works');
+                    but.style.display = 'block';
+                }
+            }
+            
+            first.onkeyup = function() {
+                console.log("typed something");
+                console.log(regEx1.test(first.value), first.value);
+                
+                if(regEx1.test(first.value) == true) {
+                    first.style.color = '#0F0';
+                }
+
+                else {
+                    first.style.color = '#F00';
+                }
+            }
+            
+            last.onkeyup = function() {
+                if(regEx2.test(last.value) == true) {
+                    last.style.color = '#0F0';
+                }
+
+                else {
+                    last.style.color = '#F00';
+                }
+            }
+             
+            address.onkeyup = function() {
+                if(regEx3.test(address.value) == true) {
+                    address.style.color = '#0F0';
+                }
+
+                else {
+                    address.style.color = '#F00';
+                }
+            }
+            
+            city.onkeyup = function() {
+                if(regEx4.test(city.value) == true) {
+                    city.style.color = '#0F0';
+                }
+
+                else {
+                    city.style.color = '#F00';
+                }
+            }
+            
+            province.onkeyup = function() {
+                if(regEx5.test(province.value) == true) {
+                    province.style.color = '#0F0';
+                }
+
+                else {
+                    province.style.color = '#F00';
+                }
+            }
+             
+            email.onkeyup = function() {
+                if(regEx6.test(email.value) == true) {
+                    email.style.color = '#0F0';
+                }
+
+                else {
+                    email.style.color = '#F00';
+                }
+            }
+            
+            but.onclick = function() {
+                first.style.display = 'none';
+                last.style.display = 'none';
+                address.style.display = 'none';
+                city.style.display = 'none';
+                province.style.display = 'none';
+                email.style.display = 'none';
+                
+                a.style.display = 'none';
+                b.style.display = 'none';
+                c.style.display = 'none';
+                d.style.display = 'none';
+                e.style.display = 'none';
+                f.style.display = 'none';
+                
+                qty.style.display = 'block';
+                qty1.style.display = 'block';
+                price.style.display = 'block';
+                price1.style.display = 'block';
+                total.style.display = 'block';
+                total1.style.display = 'block';
+                purchase.style.display = 'block';
+                
+                total1.innerHTML = (ba + ca);
+                if (ba == 0 && ca == 0) {
+                    qty1.innerHTML = 0;
+                }
+                else {
+                    qty1.innerHTML = 1;
+                }
+                price1.innerHTML = (ba + ca);
+                
+                but.style.display = 'none';
+            }
+            
+            purchase.onclick = function() {
+                qty.style.display = 'none';
+                qty1.style.display = 'none';
+                price.style.display = 'none';
+                price1.style.display = 'none';
+                total.style.display = 'none';
+                total1.style.display = 'none';
+                purchase.style.display = 'none';
+                
+                message.innerHTML = 'Thank you for your purchase!'
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SimpleTech</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link href="contact.css" type="text/css" rel="stylesheet"/>
+        <link href="nav_bar.css" type="text/css" rel="stylesheet"/>
+    </head>
+    
+    <body>
+        <div id='links'></div>
+        <script src='js.js'></script>
+        <div id='con_pic'></div>
+        <div id='info'>Phone: (604) 876-5432 Address: 645 Dunsmuir Street</div>
+        <input id='question' type='text' placeholder='Enter Question Here'/>
+        <button id='submit'>Submit</button>
+        <button id='remove'>Remove Questions</button>
+        <h2 id='FAQ'>FAQ</h2>
+        <p align='center' id='board'>Q: How do I turn on the device?<br/>
+        A: Press and hold the power button in the bottom left corner.</p>
+        <script>
+            var submit = document.getElementById("submit");
+            var inp = document.getElementById("question");
+            var board = document.getElementById('board');
+            var remove = document.getElementById('remove');
+            var b = board.innerHTML;
+            
+            submit.onclick = function() {
+                var a = board.innerHTML;
+                board.innerHTML = a + '<br/>' + 'Q: ' + inp.value;
+            }
+            
+            remove.onclick = function() {
+                board.innerHTML = b;
+            }
+        </script>
+    </body>
+</html>
